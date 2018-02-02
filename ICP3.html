@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js"></script>
+
+
+    <style>
+        .NutritionDetails {
+            height: 150px;
+            width: 250px;
+            border: 1px dashed #ccc;
+            padding: 1em;
+        }
+
+    </style>
+
+    <script>
+        angular.module('totalNutrition', [])
+            .controller('totalNutritionCtrl', function($scope, $http) {
+                // Method to get the weather details //
+                $scope.getTotalNutrition = function() {
+                    var state = $scope.fooditem;
+
+                    /*$http.get('https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=b234d9a3-d86a-4476-9c56-07173e317489&password=0pmyS3pDPqUv&text=' + state ).success(function(data) {
+                        console.log(data);
+                    })*/
+
+                    $http.get('https://api.edamam.com/api/nutrition-data?app_id=39a5f5bf&app_key=3b435cd66dcfc463f07f73aeccd98d02&ingr=' + state ).success(function(data) {
+                        console.log(data);
+                        itemcalories = data.calories;
+                        weight= data.totalWeight;
+                        var total =  state + " has " + itemcalories + " and weights" + weight;
+                        $scope.caloriesandweight = {
+                            html: " Contains " + itemcalories + "calories </br>" + "weight is " + weight
+                        }
+
+                        $scope.caloriesandweightaudio = {
+                            html: "<a href=\"https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=6b64353e-9897-453c-8f62-2418a46270a7&password=4Ndc7b8REIKF&text="+total+"\">Click Here</a>"
+                        }
+
+
+                    })
+
+
+
+
+                }
+            });
+    </script>
+</head>
+
+<body>
+<div class="myNutritionData" align="center">
+    <div ng-app="totalNutrition" ng-controller="totalNutritionCtrl">
+        <h1>Today's Calorie Intake</h1>
+        Enter food item: <input type="text" id="myItem" ng-model="fooditem" placeholder="Enter food">
+        <br/>
+        <br/>
+
+
+        <button href="" id="myButton" ng-click="getTotalNutrition()">Submit</button>
+
+        <br/>
+        <br/>
+        <div class="NutritionDetails">
+            <p ng-bind-html-unsafe="caloriesandweight.html"></p>
+            <p ng-bind-html-unsafe="caloriesandweightaudio.html"></p>
+        </div>
+
+
+    </div>
+
+</div>
+</body>
+</html>

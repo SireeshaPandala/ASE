@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+body{
+  background-color: #c6f4f3;
+}
+button{
+  background-color: #2f1baf; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+  </style>
+
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="js/angular.min.js"></script>
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="js/ng-cordova.min.js"></script>
+
+
+  <script src="js/home.js"></script>
+</head>
+<body class="body" ng-app="myApp">
+
+<ion-pane>
+  <ion-header-bar><h1>UClassify and Watson API</h1></ion-header-bar>
+  <ion-content>
+<div  ng-controller="View1Ctrl">
+<div align="right"><input type="button" value="Camera" onclick="location.href='plugin.html';"/> </div>
+
+  <div align="center"><input type="text" size="35" id="search" ng-model="search" placeholder="Enter any item to search....">
+    <button id="btn" ng-click="getDetails()">Search</button>
+  </div><br>
+  <div>
+      <P id="notes"></P>
+    </div>
+<br/>
+  <br/>
+
+  <div align="center">
+    <input type="file" ng-model="file" name="face" id="face" accept="image/*">
+    <img id="img" ng-model="img" src="https://watson-developer-cloud.github.io/doc-tutorial-downloads/visual-recognition/fruitbowl.jpg" alt="" width="200" height="200" style="display: none"><br/><br/>
+    <input type="button" id="upload" value="predict" ng-click="uploadpic()"/>
+  </div><br>
+  <div>
+    <P id="details"></P>
+  </div>
+
+
+
+
+</div>
+  </ion-content>
+</ion-pane>
+
+</body>
+</html>

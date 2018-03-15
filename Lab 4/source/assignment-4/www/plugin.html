@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  h1{
+
+  }
+</style>
+
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="js/angular.min.js"></script>
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="js/ng-cordova.min.js"></script>
+  <script src="js/plugin.js"></script>
+</head>
+<body class="body" ng-app="plugin">
+
+<ion-pane>
+  <ion-header-bar><h1>Camera Plugin</h1></ion-header-bar>
+  <ion-content>
+<div ng-controller="plugincontrol">
+  <input type="button" value="Take photo" ng-click="upload()"></input>
+</div>
+    <br/><br/>
+    <img id="pic" src="" style="width: 500px">
+  </ion-content>
+</ion-pane>
+</body>
+</html>
